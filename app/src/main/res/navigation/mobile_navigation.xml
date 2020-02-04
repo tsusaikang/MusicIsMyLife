@@ -7,18 +7,18 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.kangjusang.musicismylife.ui.home.HomeFragment"
-        android:label="nav_HOME"
+        android:label="@string/nav_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.kangjusang.musicismylife.ui.dashboard.DashboardFragment"
-        android:label="nav_DASHBOARD"
+        android:label="@string/nav_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.kangjusang.musicismylife.ui.notifications.NotificationsFragment"
-        android:label="nav_NOTIFICATIONS"
+        android:label="@string/nav_notifications"
         tools:layout="@layout/fragment_notifications" />
 </navigation>

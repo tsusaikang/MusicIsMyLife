@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">MusicIsMyLife</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="menu_home">mHome</string>
+    <string name="menu_dashboard">mDashboard</string>
+    <string name="menu_notifications">mNotifications</string>
+    <string name="nav_home">nvHome</string>
+    <string name="nav_dashboard">nvDashboard</string>
+    <string name="nav_notifications">nvNotifications</string>
 </resources>
