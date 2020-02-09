@@ -1,8 +1,13 @@
 package com.kangjusang.musicismylife.model;
 
-import java.util.Arrays;
+import android.util.Range;
 
-public class SongFromFLO implements SongGeneralizer
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.TreeMap;
+
+public class Song implements SongGeneralizer
 {
     private String duration;
 
@@ -105,7 +110,23 @@ public class SongFromFLO implements SongGeneralizer
         result.setTitle(getTitle());
         String lyrics = getLyrics();
         String[] splitLyrics = lyrics.split("\n");
-        result.setLyrics(Arrays.asList(splitLyrics));
+        if (splitLyrics != null && splitLyrics.length > 0) {
+            TreeMap<Long,Integer> longIntegerTreeMap = new TreeMap<>();
+            ArrayList<String> stringArrayList = new ArrayList<>();
+            for (int i = 0 ; i < splitLyrics.length-1 ; i++) {
+                String strFrom = splitLyrics[i];
+                String strFromTime = strFrom.substring(0,11);
+                String strFromTimeM = strFromTime.substring(1,3);
+                String strFromTimeS = strFromTime.substring(4,6);
+                String strFromTimeMS = strFromTime.substring(7,10);
+                Long from = Long.valueOf(strFromTimeM)*60*1000 + Long.valueOf(strFromTimeS)*1000 + Long.valueOf(strFromTimeMS);
+                String strFromLyrics = strFrom.substring(11);
+                longIntegerTreeMap.put(from,i);
+                stringArrayList.add(strFromLyrics);
+            }
+            result.setLyricsIndex(longIntegerTreeMap);
+            result.setLyrics(stringArrayList);
+        }
         return result;
     }
 }

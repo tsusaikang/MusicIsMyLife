@@ -7,7 +7,7 @@
     xmlns:sothree="http://schemas.android.com/apk/res-auto"
     android:id="@+id/sliding_layout"
     android:gravity="bottom"
-    sothree:umanoPanelHeight="8dp"
+    sothree:umanoPanelHeight="0dp"
     sothree:umanoShadowHeight="4dp"
     sothree:umanoParallaxOffset="100dp"
     sothree:umanoDragView="@+id/dragView"
@@ -17,41 +17,71 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <include
-            android:id="@+id/playerSongInfo"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            sothree:layout_constraintTop_toTopOf="parent"
-            sothree:layout_constraintEnd_toEndOf="parent"
-            sothree:layout_constraintStart_toStartOf="parent"
-            sothree:layout_constraintBottom_toTopOf="@+id/lvLyrics"
-            layout="@layout/player_song_info"
-            />
-
-        <ListView
-            android:id="@+id/lvLyrics"
-            android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:divider="@null"
-            android:dividerHeight="0dp"
-            android:footerDividersEnabled="false"
-            android:headerDividersEnabled="false"
-            android:scrollbarSize="0dp"
-            android:scrollbars="none"
+            android:orientation="vertical"
             sothree:layout_constraintBottom_toTopOf="@+id/seekBar"
-            sothree:layout_constraintEnd_toEndOf="parent"
-            sothree:layout_constraintStart_toStartOf="parent"
-            sothree:layout_constraintTop_toBottomOf="@+id/playerSongInfo" />
+            sothree:layout_constraintTop_toTopOf="parent">
+
+            <include
+                android:id="@+id/playerSongInfo"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                layout="@layout/player_song_info" />
+
+            <ListView
+                android:id="@+id/lvLyrics"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:divider="@null"
+                android:dividerHeight="0dp"
+                android:footerDividersEnabled="false"
+                android:headerDividersEnabled="false"
+                android:scrollbarSize="0dp"
+                android:scrollbars="none" />
+
+        </LinearLayout>
 
         <SeekBar
             android:id="@+id/seekBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:max="100"
-            android:progress="50"
-            sothree:layout_constraintBottom_toTopOf="@+id/playerControl"
+            android:paddingStart="16dip"
+            android:paddingTop="10dp"
+            android:paddingEnd="16dip"
+            android:progress="0"
+            sothree:layout_constraintBottom_toTopOf="@+id/clPlayTime"
             sothree:layout_constraintEnd_toEndOf="parent"
             sothree:layout_constraintStart_toStartOf="parent"/>
+
+        <LinearLayout
+            android:id="@+id/clPlayTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            sothree:layout_constraintBottom_toTopOf="@+id/playerControl"
+            sothree:layout_constraintEnd_toEndOf="parent"
+            sothree:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/tvPlayTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/tvDuration"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:text="TextView" />
+        </LinearLayout>
 
         <include
             android:id="@+id/playerControl"
@@ -64,58 +94,42 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/dragView"
-        android:orientation="vertical" >
+        android:orientation="horizontal" >
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="8dp"
-            android:orientation="horizontal">
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/name"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textSize="14sp"
-                android:gravity="center_vertical"
-                android:text="TVTVd"
-                android:paddingLeft="10dp"/>
-
-            <Button
-                android:id="@+id/btn"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textSize="14sp"
-                android:gravity="center_vertical|right"
-                android:paddingRight="10dp"
-                android:paddingLeft="10dp"/>
+            <ListView
+                android:id="@+id/lvLyricsExpanded"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:divider="@null"
+                android:dividerHeight="0dp"
+                android:footerDividersEnabled="false"
+                android:headerDividersEnabled="false"
+                android:scrollbarSize="0dp"
+                android:scrollbars="none" />
 
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/text_lyrics"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:background="@color/colorAccent"/>
+            android:orientation="vertical" >
 
-<!--        <ListView-->
-<!--            android:id="@+id/list"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:layout_weight="1">-->
-<!--        </ListView>-->
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                sothree:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+        </LinearLayout>
 
     </LinearLayout>
 

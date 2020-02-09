@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.kangjusang.musicismylife.model.GeneralizedSong;
 import com.kangjusang.musicismylife.model.SongGeneralizer;
-import com.kangjusang.musicismylife.network.FLO2020Network;
+import com.kangjusang.musicismylife.network.DefaultNetwork;
 import com.kangjusang.musicismylife.network.NetworkInterface;
 
 public class PlayerViewModel extends ViewModel {
@@ -24,8 +24,8 @@ public class PlayerViewModel extends ViewModel {
     }
 
     public void loadSongByRandom() {
-        FLO2020Network flo2020Network = new FLO2020Network();
-        flo2020Network.getSongByRandom(new NetworkInterface.SongListener() {
+        DefaultNetwork defaultNetwork = new DefaultNetwork();
+        defaultNetwork.getSongByRandom(new NetworkInterface.SongListener() {
             @Override
             public void onSuccess(SongGeneralizer song) {
                 GeneralizedSong generalizedSong = song.generalize();

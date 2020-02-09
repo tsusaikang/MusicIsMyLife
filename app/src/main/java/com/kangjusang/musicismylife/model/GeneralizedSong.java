@@ -1,7 +1,11 @@
 package com.kangjusang.musicismylife.model;
 
+import android.util.Range;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.TreeMap;
 
 public class GeneralizedSong {
 
@@ -11,6 +15,7 @@ public class GeneralizedSong {
     private String singer;
     private String album;
     private String title;
+    private TreeMap<Long,Integer> lyricsIndex;
     private ArrayList<String> lyrics;
 
     public String getDuration ()
@@ -73,14 +78,22 @@ public class GeneralizedSong {
         this.title = title;
     }
 
-    public ArrayList<String> getLyrics ()
+    public TreeMap<Long,Integer> getLyricsIndex ()
     {
+        return lyricsIndex;
+    }
+
+    public void setLyricsIndex (TreeMap<Long,Integer> lyricsIndex)
+    {
+        this.lyricsIndex = lyricsIndex;
+    }
+
+    public ArrayList<String> getLyrics () {
         return lyrics;
     }
 
-    public void setLyrics (List<String> lyrics)
-    {
-        this.lyrics = new ArrayList<>(lyrics);
+    public void setLyrics (ArrayList<String> lyrics) {
+        this.lyrics = lyrics;
     }
 
     @Override
