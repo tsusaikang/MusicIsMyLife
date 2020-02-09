@@ -213,7 +213,7 @@ public class PlayerMainFragment extends Fragment {
                     seekBar.setProgress((int)startTime);
                     myHandler.postDelayed(this, 100);
                     Integer index = Utils.mappedValue(timeIndexTreeMap, startTime);
-                    Log.d("UpdateSongTime", "" + startTime + " : " + index);
+//                    Log.d("UpdateSongTime", "" + startTime + " : " + index);
                     if (index != null) {
                         lvLyrics.setSelection(index);
                         lvLyricsExpanded.setSelection((index - 5 < 0) ? 0 : index - 5);
