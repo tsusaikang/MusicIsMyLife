@@ -33,4 +33,9 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     implementation 'com.sothree.slidinguppanel:library:3.4.0'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+
+    implementation "com.github.bumptech.glide:okhttp3-integration:4.11.0"
 }
