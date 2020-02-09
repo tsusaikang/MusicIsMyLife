@@ -1,6 +1,8 @@
 package com.kangjusang.musicismylife.model;
 
-public class Song
+import java.util.Arrays;
+
+public class SongFromFLO implements SongGeneralizer
 {
     private String duration;
 
@@ -90,5 +92,20 @@ public class Song
     public String toString()
     {
         return "ClassPojo [duration = "+duration+", image = "+image+", file = "+file+", singer = "+singer+", album = "+album+", title = "+title+", lyrics = "+lyrics+"]";
+    }
+
+    @Override
+    public GeneralizedSong generalize() {
+        GeneralizedSong result = new GeneralizedSong();
+        result.setAlbum(getAlbum());
+        result.setDuration(getDuration());
+        result.setFile(getFile());
+        result.setImage(getImage());
+        result.setSinger(getSinger());
+        result.setTitle(getTitle());
+        String lyrics = getLyrics();
+        String[] splitLyrics = lyrics.split("\n");
+        result.setLyrics(Arrays.asList(splitLyrics));
+        return result;
     }
 }

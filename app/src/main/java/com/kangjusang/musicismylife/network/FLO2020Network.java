@@ -2,7 +2,8 @@ package com.kangjusang.musicismylife.network;
 
 import android.net.Uri;
 
-import com.kangjusang.musicismylife.model.Song;
+import com.kangjusang.musicismylife.model.SongFromFLO;
+import com.kangjusang.musicismylife.model.SongGeneralizer;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -27,14 +28,14 @@ public class FLO2020Network implements NetworkInterface {
 
     @Override
     public void getSongByRandom(final SongListener songListener) {
-        musicService.getSongByRandom().enqueue(new Callback<Song>() {
+        musicService.getSongByRandom().enqueue(new Callback<SongFromFLO>() {
             @Override
-            public void onResponse(Call<Song> call, Response<Song> response) {
+            public void onResponse(Call<SongFromFLO> call, Response<SongFromFLO> response) {
                 songListener.onSuccess(response.body());
             }
 
             @Override
-            public void onFailure(Call<Song> call, Throwable t) {
+            public void onFailure(Call<SongFromFLO> call, Throwable t) {
                 songListener.onFailure(t);
             }
         });
@@ -42,6 +43,6 @@ public class FLO2020Network implements NetworkInterface {
 
     private interface MusicService {
         @GET("2020-flo/song.json")
-        Call<Song> getSongByRandom();
+        Call<SongFromFLO> getSongByRandom();
     }
 }
