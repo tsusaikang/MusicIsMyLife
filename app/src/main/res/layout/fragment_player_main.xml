@@ -33,21 +33,29 @@
             sothree:layout_constraintTop_toTopOf="parent"
             sothree:layout_constraintEnd_toEndOf="parent"
             sothree:layout_constraintStart_toStartOf="parent"
-            sothree:layout_constraintBottom_toTopOf="@+id/tvLyrics"
+            sothree:layout_constraintBottom_toTopOf="@+id/svLyrics"
             layout="@layout/player_song_info"
             />
 
-        <TextView
-            android:id="@+id/tvLyrics"
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsvLyrics"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
-            android:gravity="center"
-            android:text="가사\n가사\n가사\n가사\n가사\n가사\n가사\n가사\n가사\n가사"
-            sothree:layout_constraintTop_toTopOf="@+id/playerSongInfo"
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            android:background="@color/colorPrimary"
+            sothree:layout_constraintTop_toBottomOf="@+id/playerSongInfo"
             sothree:layout_constraintEnd_toEndOf="parent"
             sothree:layout_constraintStart_toStartOf="parent"
-            sothree:layout_constraintBottom_toTopOf="@+id/seekBar"/>
+            sothree:layout_constraintBottom_toTopOf="@+id/seekBar">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvLyrics"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimaryDark">
+            </androidx.recyclerview.widget.RecyclerView>
+        </androidx.core.widget.NestedScrollView>
+
+
 
         <SeekBar
             android:id="@+id/seekBar"

@@ -1,5 +1,6 @@
 package com.kangjusang.musicismylife.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GeneralizedSong {
@@ -10,7 +11,7 @@ public class GeneralizedSong {
     private String singer;
     private String album;
     private String title;
-    private List<String> lyrics;
+    private ArrayList<String> lyrics;
 
     public String getDuration ()
     {
@@ -72,14 +73,14 @@ public class GeneralizedSong {
         this.title = title;
     }
 
-    public List<String> getLyrics ()
+    public ArrayList<String> getLyrics ()
     {
         return lyrics;
     }
 
     public void setLyrics (List<String> lyrics)
     {
-        this.lyrics = lyrics;
+        this.lyrics = new ArrayList<>(lyrics);
     }
 
     @Override
