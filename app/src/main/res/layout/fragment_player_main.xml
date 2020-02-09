@@ -1,27 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.sothree.slidinguppanel.SlidingUpPanelLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:sothree="http://schemas.android.com/apk/res-auto"
     android:id="@+id/sliding_layout"
     android:gravity="bottom"
-    sothree:umanoPanelHeight="68dp"
+    sothree:umanoPanelHeight="8dp"
     sothree:umanoShadowHeight="4dp"
     sothree:umanoParallaxOffset="100dp"
     sothree:umanoDragView="@+id/dragView"
-    sothree:umanoOverlay="true"
-    android:background="@color/cardview_light_background">
+    sothree:umanoOverlay="true" >
 
-    <TextView
-        android:id="@+id/text_home"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp" />
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:id="@+id/text_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            sothree:layout_constraintBottom_toTopOf="@+id/playerControl"
+            sothree:layout_constraintEnd_toEndOf="parent"
+            sothree:layout_constraintStart_toStartOf="parent" />
+
+        <include
+            android:id="@+id/playerControl"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            sothree:layout_constraintBottom_toBottomOf="parent"
+            sothree:layout_constraintEnd_toEndOf="parent"
+            sothree:layout_constraintStart_toStartOf="parent"
+            layout="@layout/player_control"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,7 +48,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="68dp"
+            android:layout_height="8dp"
             android:orientation="horizontal">
 
             <TextView
