@@ -23,9 +23,19 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:textSize="20sp"
-            sothree:layout_constraintBottom_toTopOf="@+id/playerControl"
+            sothree:layout_constraintBottom_toTopOf="@+id/seekBar"
             sothree:layout_constraintEnd_toEndOf="parent"
             sothree:layout_constraintStart_toStartOf="parent" />
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:progress="50"
+            sothree:layout_constraintBottom_toTopOf="@+id/playerControl"
+            sothree:layout_constraintEnd_toEndOf="parent"
+            sothree:layout_constraintStart_toStartOf="parent"/>
 
         <include
             android:id="@+id/playerControl"
