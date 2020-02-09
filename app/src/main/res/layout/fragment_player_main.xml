@@ -17,15 +17,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-<!--        <TextView-->
-<!--            android:id="@+id/text_home"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:textAlignment="center"-->
-<!--            android:textSize="20sp"-->
-<!--            sothree:layout_constraintBottom_toTopOf="@+id/seekBar"-->
-<!--            sothree:layout_constraintEnd_toEndOf="parent"-->
-<!--            sothree:layout_constraintStart_toStartOf="parent" />-->
         <include
             android:id="@+id/playerSongInfo"
             android:layout_height="wrap_content"
@@ -33,29 +24,24 @@
             sothree:layout_constraintTop_toTopOf="parent"
             sothree:layout_constraintEnd_toEndOf="parent"
             sothree:layout_constraintStart_toStartOf="parent"
-            sothree:layout_constraintBottom_toTopOf="@+id/svLyrics"
+            sothree:layout_constraintBottom_toTopOf="@+id/lvLyrics"
             layout="@layout/player_song_info"
             />
 
-        <androidx.core.widget.NestedScrollView
-            android:id="@+id/nsvLyrics"
+        <ListView
+            android:id="@+id/lvLyrics"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:orientation="vertical"
-            android:background="@color/colorPrimary"
-            sothree:layout_constraintTop_toBottomOf="@+id/playerSongInfo"
+            android:layout_height="90dp"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            android:footerDividersEnabled="false"
+            android:headerDividersEnabled="false"
+            android:scrollbarSize="0dp"
+            android:scrollbars="none"
+            sothree:layout_constraintBottom_toTopOf="@+id/seekBar"
             sothree:layout_constraintEnd_toEndOf="parent"
             sothree:layout_constraintStart_toStartOf="parent"
-            sothree:layout_constraintBottom_toTopOf="@+id/seekBar">
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvLyrics"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/colorPrimaryDark">
-            </androidx.recyclerview.widget.RecyclerView>
-        </androidx.core.widget.NestedScrollView>
-
-
+            sothree:layout_constraintTop_toBottomOf="@+id/playerSongInfo" />
 
         <SeekBar
             android:id="@+id/seekBar"
