@@ -39,14 +39,10 @@ public class PlayerMainFragment extends Fragment {
         final TextView tvSongTitle = root.findViewById(R.id.tvSongTitle);
         final TextView tvSongArtist = root.findViewById(R.id.tvSongArtist);
         final ImageView ivSongImage = root.findViewById(R.id.ivSongImage);
-        final NestedScrollView nsvLyrics = root.findViewById(R.id.nsvLyrics);
-        final RecyclerView rvLyrics = root.findViewById(R.id.rvLyrics);
+        final ListView lvLyrics = root.findViewById(R.id.lvLyrics);
 
         tvSongTitle.setText("Loading...");
         tvSongArtist.setText("Loading...");
-        final LyricsAdapter lyricsAdapter = new LyricsAdapter();
-        rvLyrics.setLayoutManager(new LinearLayoutManager(getContext()));
-        rvLyrics.setAdapter(lyricsAdapter);
 
         playerViewModel = new ViewModelProvider(this.getActivity()).get(PlayerViewModel.class);
         playerViewModel.getSong().observe(this.getViewLifecycleOwner(), new Observer<GeneralizedSong>() {
@@ -55,16 +51,12 @@ public class PlayerMainFragment extends Fragment {
                 tvSongTitle.setText(song.getTitle());
                 tvSongArtist.setText(song.getSinger());
                 Glide.with(getActivity()).load(song.getImage()).into(ivSongImage);
-                lyricsAdapter.updateLyrics(song.getLyrics());
-                lyricsAdapter.notifyDataSetChanged();
-                ViewGroup.LayoutParams layoutParams = nsvLyrics.getLayoutParams();
-                layoutParams.height = lyricsAdapter.getItemViewHeight() * 4;
-                nsvLyrics.setLayoutParams(layoutParams);
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getContext(), R.layout.lyrics_row_1, song.getLyrics());
+                lvLyrics.setAdapter(arrayAdapter);
             }
         });
 
         playerViewModel.loadSongByRandom();
-//        mLayout = root.findViewById(R.id.sliding_layout);
 
         return root;
     }
