@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.sothree.slidinguppanel.SlidingUpPanelLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:sothree="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/sliding_layout"
+    android:gravity="top"
+    sothree:umanoPanelHeight="0dp"
+    sothree:umanoShadowHeight="4dp"
+    sothree:umanoParallaxOffset="0dp"
+    sothree:umanoDragView="@+id/dragView"
+    sothree:umanoOverlay="true" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            sothree:layout_constraintBottom_toTopOf="@+id/playerControl"
+            sothree:layout_constraintTop_toTopOf="parent">
+
+            <include
+                android:id="@+id/playerSongInfo"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                layout="@layout/player_song_info" />
+
+            <ListView
+                android:id="@+id/lvLyrics"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:divider="@null"
+                android:dividerHeight="0dp"
+                android:footerDividersEnabled="false"
+                android:headerDividersEnabled="false"
+                android:scrollbarSize="0dp"
+                android:scrollbars="none" />
+
+        </LinearLayout>
+
+        <include
+            android:id="@+id/playerControl"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            sothree:layout_constraintBottom_toBottomOf="parent"
+            sothree:layout_constraintEnd_toEndOf="parent"
+            sothree:layout_constraintStart_toStartOf="parent"
+            layout="@layout/player_control"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/dragView"
+        android:background="@color/cardview_dark_background">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:orientation="vertical"
+                android:paddingTop="100dp"
+                android:paddingBottom="200dp">
+
+                <ListView
+                    android:id="@+id/lvLyricsExpanded"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:divider="@null"
+                    android:dividerHeight="0dp"
+                    android:footerDividersEnabled="false"
+                    android:headerDividersEnabled="false"
+                    android:scrollbarSize="0dp"
+                    android:scrollbars="none" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <ImageButton
+                    android:id="@+id/ibCloseLyricsExpanded"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    sothree:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+                <ToggleButton
+                    android:id="@+id/toggleButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ToggleButton" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.sothree.slidinguppanel.SlidingUpPanelLayout>

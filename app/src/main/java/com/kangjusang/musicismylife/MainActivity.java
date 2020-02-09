@@ -17,9 +17,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        enableNavigationUI();
+//        enableNavigationUI();
 
-        getApplication().setTheme(R.style.Theme_AppCompat);
+
 
     }
 
