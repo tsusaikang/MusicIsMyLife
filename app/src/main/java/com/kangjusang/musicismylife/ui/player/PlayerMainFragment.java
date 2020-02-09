@@ -1,5 +1,6 @@
 package com.kangjusang.musicismylife.ui.player;
 
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,13 +10,16 @@ import android.util.Range;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -41,6 +45,7 @@ public class PlayerMainFragment extends Fragment {
 
     SlidingUpPanelLayout mLayout;
     MediaPlayer mMediaPlayer;
+    Boolean controlWithLyrics = false;
 
     private Handler myHandler = new Handler();
 
@@ -62,6 +67,10 @@ public class PlayerMainFragment extends Fragment {
         final ImageButton ibFf = root.findViewById(R.id.ibFf);
         final ImageButton ibRew = root.findViewById(R.id.ibRew);
 
+        final ImageButton ibCloseLyricsExpanded = root.findViewById(R.id.ibCloseLyricsExpanded);
+        final ToggleButton toggleButton = root.findViewById(R.id.toggleButton);
+        final ListView lvLyricsExpanded = root.findViewById(R.id.lvLyricsExpanded);
+
         tvSongTitle.setText("Loading...");
         tvSongArtist.setText("Loading...");
 
@@ -79,6 +88,8 @@ public class PlayerMainFragment extends Fragment {
                 Glide.with(getActivity()).load(song.getImage()).into(ivSongImage);
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getContext(), R.layout.lyrics_row_1, song.getLyrics());
                 lvLyrics.setAdapter(arrayAdapter);
+                lvLyricsExpanded.setAdapter(arrayAdapter);
+                lvLyricsExpanded.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
                 timeIndexTreeMap = song.getLyricsIndex();
                 duration = Integer.valueOf(song.getDuration()) * 1000;
                 seekBar.setMax((int)duration);
@@ -205,15 +216,46 @@ public class PlayerMainFragment extends Fragment {
                     Log.d("UpdateSongTime", "" + startTime + " : " + index);
                     if (index != null) {
                         lvLyrics.setSelection(index);
+                        lvLyricsExpanded.setSelection((index - 5 < 0) ? 0 : index - 5);
+                        lvLyricsExpanded.setItemChecked(index, true);
                     }
                 }
             };
+        });
+        lvLyrics.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mLayout.setPanelState(SlidingUpPanelLayout.PanelState.ANCHORED);
+            }
+        });
+        lvLyricsExpanded.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (controlWithLyrics) {
+
+                } else {
+                    mLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+                }
+            }
+        });
+
+        ibCloseLyricsExpanded.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+            }
+        });
+
+        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                controlWithLyrics = isChecked;
+            }
         });
 
         playerViewModel.loadSongByRandom();
 
         mLayout = root.findViewById(R.id.sliding_layout);
-//        mLayout.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
 
         return root;
     }
